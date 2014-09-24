@@ -149,3 +149,9 @@ if [ -f "${SSH_ENV}" ]; then
 else
   start_agent;
 fi
+
+export GOROOT=/home/kiran/work/toolchain/go
+export PATH=$GOROOT/bin:$PATH
+export GOBIN=/home/kiran/work/main/go/bin
+export GOPATH=/home/kiran/work/main/go/third_party:/home/kiran/work/main/go
+
