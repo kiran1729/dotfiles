@@ -92,6 +92,9 @@ set winminheight=0              " Windows can be 0 line high
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+set clipboard+=unnamed          " use the clipboards of vim and win
+set paste                       " Paste from a windows or from vim
+set go+=a                       " Visual selection automatically copied to the clipboardd
 
 " Remove trailing whitespaces and ^M chars
 autocmd FileType go,javascript,python autocmd BufWritePre <buffer> call StripTrailingWhitespace()
@@ -112,6 +115,12 @@ noremap j gj
 noremap k gk
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
+" Leader- to yank/paste from Windows clipboard
+nnoremap <leader>Y "+y
+nnoremap <leader>P "+p
+" Leader- to yank/paste from linux clipboard
+nnoremap <leader>y "*y
+nnoremap <leader>p "*p
 " Code folding options
 nmap <leader>f0 :set foldlevel=0<CR>
 nmap <leader>f1 :set foldlevel=1<CR>
@@ -194,7 +203,7 @@ map zh zH
     endif
 
 " }
-" Plugins
+" Plugins {
 
     " NerdTree {
         map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
@@ -309,7 +318,13 @@ map zh zH
           " <TAB>: completion.
           inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
           inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+          " Use Shift up and down to navigate list and leave up/down as normal
+          inoremap <expr> <S-up> pumvisible() ? "<C-p>" : "<up>"
+          inoremap <expr> <S-down> pumvisible() ? "<C-n>" : "<down>"
+          inoremap <expr> <up> pumvisible() ? neocomplete#close_popup()."<up>" : "<up>"
+          inoremap <expr> <down> pumvisible() ? neocomplete#close_popup()."<down>" : "<down>"
 
+          " <CR> behaves like CR and s-CR is used for selecting entry.
           " <CR>: close popup
           " <s-CR>: close popup and save indent.
           inoremap <expr><s-CR> pumvisible() ? neocomplete#close_popup() : "\<CR>"
@@ -362,6 +377,18 @@ map zh zH
       " especially when splits are used.
       set completeopt-=preview
     " }
+
+    " vim-go {
+      let g:go_fmt_fail_silently = 1
+      " syntax highlighting
+      " let g:go_highlight_functions = 1
+      " let g:go_highlight_methods = 1
+      " let g:go_highlight_structs = 1
+
+      " define word under cursor in new tab
+      au FileType go nmap <Leader>d <Plug>(go-def-tab)
+    " }
+" }
 
 " Functions {
 
