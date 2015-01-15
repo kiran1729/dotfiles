@@ -151,7 +151,9 @@ else
 fi
 
 export GOROOT=/home/kiran/work/toolchain/go
-export PATH=$GOROOT/bin:$PATH
+export PATH=$GOROOT/bin:/home/kiran/bin:$PATH
 export GOBIN=/home/kiran/work/main/go/bin
 export GOPATH=/home/kiran/work/main/go/third_party:/home/kiran/work/main/go
+
+export TOOLCHAIN=/home/kiran/work/toolchain
 

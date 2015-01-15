@@ -49,6 +49,8 @@ if has('statusline')
     set guitablabel=\[%N\]\ %t\ %M
 endif
 
+set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif
+
 " highlight the current line in insert mode
 au InsertEnter * set cursorline
 au InsertLeave * set nocursorline
