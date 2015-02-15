@@ -1,16 +1,16 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
-Bundle 'majutsushi/tagbar'
-Bundle 'Shougo/neocomplete.vim'
-Bundle 'fatih/vim-go'
-Bundle 'kien/ctrlp.vim'
-Bundle 'rking/ag.vim'
+Plugin 'gmarik/vundle'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'fatih/vim-go'
+Plugin 'kien/ctrlp.vim'
+Plugin 'rking/ag.vim'
 
 filetype plugin indent on
 filetype on
