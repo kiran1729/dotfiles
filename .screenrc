@@ -4,7 +4,7 @@ defscrollback = 5000
 shelltitle '] |bash'    # Dynamic window titled for running program
 
 # Change the default C-a to C-\
-escape ^\\
+# escape ^\\
 
 #hardstatus alwayslastline '%{= .} %{R}%-Lw%{= .}%> %n%f %t*%{= .}%+Lw%< %-=%{g}(%{d}%H/%l%{g})'
 hardstatus alwayslastline "%{bw}[ %?%-Lw%?%{wb} %n*%f %t %{bw}%?%+Lw%? ]%=%{bw}[%C %A] [%l]"
