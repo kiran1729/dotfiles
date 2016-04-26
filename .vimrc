@@ -12,7 +12,9 @@ Plugin 'fatih/vim-go'
 Plugin 'kien/ctrlp.vim'
 Plugin 'rking/ag.vim'
 
-filetype plugin indent on
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 filetype on
 
 " Instead of reverting the cursor to the last position in the buffer, we
@@ -101,7 +103,6 @@ set go+=a                       " Visual selection automatically copied to the c
 " Remove trailing whitespaces and ^M chars
 autocmd FileType go,javascript,python autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 "autocmd FileType go autocmd BufWritePre <buffer> GoFmt
-let g:go_fmt_options = '-tabs=false -tabwidth=2'
 
 
 " tab navigation using Ctrl-Left/Right
@@ -186,7 +187,8 @@ map zh zH
         set lines=40                " 40 lines of text instead of 24
         set columns=90
         if has("gui_gtk2")
-            set guifont=Consolas\ Regular\ 11,Courier\ New\ Regular\ 10
+            set guifont=Consolas\ Regular\ 13,Courier\ New\ Regular\ 12
+            "set guifont=Monospace\ 12,Courier\ New\ Regular\ 12
         elseif has("gui_mac")
             set guifont=Andale\ Mono\ Regular:h16,Menlo\ Regular:h15,Consolas\ Regular:h16,Courier\ New\ Regular:h18
         elseif has("gui_win32")
@@ -382,13 +384,22 @@ map zh zH
 
     " vim-go {
       let g:go_fmt_fail_silently = 1
+      let g:godef_split=2
       " syntax highlighting
       " let g:go_highlight_functions = 1
       " let g:go_highlight_methods = 1
       " let g:go_highlight_structs = 1
 
+      " let goimports insert imports - doesn't work with -tabs = false?
+      " let g:go_fmt_command = "goimports"
+      let g:go_fmt_options = '-tabs=false -tabwidth=2'
+
       " define word under cursor in new tab
       au FileType go nmap <Leader>d <Plug>(go-def-tab)
+
+      " to fix lag in syntastic saving files
+      let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+      let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
     " }
 " }
 
